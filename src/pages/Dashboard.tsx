@@ -1,23 +1,21 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { TrendingUp, TrendingDown, ShoppingCart, Package, DollarSign, Clock } from "lucide-react";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar } from "recharts";
 
-// Dados simulados para os gráficos
+// Dados simulados para os gráficos - apenas Mercado Livre para plano básico
 const salesData = [
-  { name: "Jan", mercadoLivre: 4000, shopee: 2400 },
-  { name: "Fev", mercadoLivre: 3000, shopee: 1398 },
-  { name: "Mar", mercadoLivre: 2000, shopee: 9800 },
-  { name: "Abr", mercadoLivre: 2780, shopee: 3908 },
-  { name: "Mai", mercadoLivre: 1890, shopee: 4800 },
-  { name: "Jun", mercadoLivre: 2390, shopee: 3800 },
-  { name: "Jul", mercadoLivre: 3490, shopee: 4300 },
+  { name: "Jan", mercadoLivre: 4000 },
+  { name: "Fev", mercadoLivre: 3000 },
+  { name: "Mar", mercadoLivre: 2000 },
+  { name: "Abr", mercadoLivre: 2780 },
+  { name: "Mai", mercadoLivre: 1890 },
+  { name: "Jun", mercadoLivre: 2390 },
+  { name: "Jul", mercadoLivre: 3490 },
 ];
 
 const ordersByMarketplace = [
   { name: "Mercado Livre", orders: 145, color: "#FFE600" },
-  { name: "Shopee", orders: 89, color: "#EE4D2D" },
 ];
 
 const MetricCard = ({ 
@@ -68,13 +66,13 @@ export default function Dashboard() {
         <div>
           <h1 className="text-3xl font-bold text-foreground">Painel</h1>
           <p className="text-muted-foreground mt-1">
-            Bem-vindo de volta! Veja o que está acontecendo com suas lojas.
+            Bem-vindo de volta! Veja o que está acontecendo com sua loja.
           </p>
         </div>
         <div className="flex items-center gap-2">
           <Badge variant="outline" className="text-green-500 border-green-500/20">
             <div className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse-slow"></div>
-            2 lojas conectadas
+            1 loja conectada
           </Badge>
         </div>
       </div>
@@ -120,7 +118,7 @@ export default function Dashboard() {
           <CardHeader>
             <CardTitle className="text-foreground">Visão Geral das Vendas</CardTitle>
             <CardDescription>
-              Comparação mensal de vendas entre marketplaces
+              Evolução mensal de vendas do Mercado Livre
             </CardDescription>
           </CardHeader>
           <CardContent className="pt-2">
@@ -150,13 +148,6 @@ export default function Dashboard() {
                   stroke="#FFE600" 
                   strokeWidth={2}
                   name="Mercado Livre"
-                />
-                <Line 
-                  type="monotone" 
-                  dataKey="shopee" 
-                  stroke="#EE4D2D" 
-                  strokeWidth={2}
-                  name="Shopee"
                 />
               </LineChart>
             </ResponsiveContainer>
@@ -203,46 +194,28 @@ export default function Dashboard() {
         </Card>
       </div>
 
-      {/* Lojas Conectadas */}
+      {/* Loja Conectada */}
       <Card className="bg-card border-border">
         <CardHeader>
-          <CardTitle className="text-foreground">Lojas Conectadas</CardTitle>
+          <CardTitle className="text-foreground">Loja Conectada</CardTitle>
           <CardDescription>
-            Suas contas de marketplace integradas
+            Sua conta de marketplace integrada
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="space-y-4">
-            <div className="flex items-center justify-between p-4 border border-border rounded-lg bg-card/50">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-yellow-500/10 rounded-lg flex items-center justify-center">
-                  <span className="text-yellow-500 font-bold text-lg">ML</span>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-foreground">Loja Principal ML</h3>
-                  <p className="text-sm text-muted-foreground">Mercado Livre • Conectado</p>
-                </div>
+          <div className="flex items-center justify-between p-4 border border-border rounded-lg bg-card/50">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 bg-yellow-500/10 rounded-lg flex items-center justify-center">
+                <span className="text-yellow-500 font-bold text-lg">ML</span>
               </div>
-              <div className="text-right">
-                <p className="text-sm font-medium text-foreground">145 pedidos</p>
-                <p className="text-xs text-muted-foreground">Este mês</p>
+              <div>
+                <h3 className="font-semibold text-foreground">Loja Principal ML</h3>
+                <p className="text-sm text-muted-foreground">Mercado Livre • Conectado</p>
               </div>
             </div>
-
-            <div className="flex items-center justify-between p-4 border border-border rounded-lg bg-card/50">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-orange-500/10 rounded-lg flex items-center justify-center">
-                  <span className="text-orange-500 font-bold text-lg">S</span>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-foreground">Minha Loja Shopee</h3>
-                  <p className="text-sm text-muted-foreground">Shopee • Conectado</p>
-                </div>
-              </div>
-              <div className="text-right">
-                <p className="text-sm font-medium text-foreground">89 pedidos</p>
-                <p className="text-xs text-muted-foreground">Este mês</p>
-              </div>
+            <div className="text-right">
+              <p className="text-sm font-medium text-foreground">145 pedidos</p>
+              <p className="text-xs text-muted-foreground">Este mês</p>
             </div>
           </div>
         </CardContent>

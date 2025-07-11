@@ -30,15 +30,9 @@ const integrations = [
     logo: "S",
     color: "#EE4D2D",
     bgColor: "bg-orange-500/10",
-    connected: true,
-    accounts: [
-      {
-        name: "Minha Loja Shopee",
-        id: "shop_987654321",
-        status: "active",
-        lastSync: "há 5 minutos"
-      }
-    ]
+    connected: false,
+    accounts: [],
+    blocked: true
   },
   {
     id: "magalu",
@@ -74,7 +68,10 @@ export default function Integrations() {
             Conecte e gerencie suas integrações de marketplace.
           </p>
         </div>
-        <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
+        <Button 
+          className="bg-primary text-primary-foreground hover:bg-primary/90"
+          disabled
+        >
           <Plus className="h-4 w-4 mr-2" />
           Adicionar Integração
         </Button>
@@ -91,7 +88,7 @@ export default function Integrations() {
               <div>
                 <h3 className="font-semibold text-foreground">Limitações do Plano Básico</h3>
                 <p className="text-sm text-muted-foreground">
-                  Você pode conectar até 1 conta por marketplace. Faça upgrade para Pro para conexões ilimitadas.
+                  Você pode conectar apenas 1 conta de 1 marketplace. Para conectar múltiplas contas e marketplaces, faça upgrade para Pro.
                 </p>
               </div>
             </div>
@@ -102,9 +99,9 @@ export default function Integrations() {
         </CardContent>
       </Card>
 
-      {/* Integrações Ativas */}
+      {/* Integração Ativa */}
       <div className="space-y-4">
-        <h2 className="text-xl font-semibold text-foreground">Integrações Ativas</h2>
+        <h2 className="text-xl font-semibold text-foreground">Integração Ativa</h2>
         
         {integrations.filter(integration => integration.connected).map((integration) => (
           <Card key={integration.id} className="bg-card border-border">
@@ -194,6 +191,11 @@ export default function Integrations() {
                             Em Breve
                           </Badge>
                         )}
+                        {integration.blocked && (
+                          <Badge variant="destructive" className="text-xs">
+                            Bloqueado
+                          </Badge>
+                        )}
                       </CardTitle>
                       <CardDescription>{integration.description}</CardDescription>
                     </div>
@@ -204,10 +206,20 @@ export default function Integrations() {
                 <Button
                   variant="outline"
                   className="w-full border-border"
-                  disabled={integration.comingSoon}
+                  disabled={integration.comingSoon || integration.blocked}
                 >
-                  {integration.comingSoon ? "Em Breve" : "Conectar Agora"}
+                  {integration.comingSoon 
+                    ? "Em Breve" 
+                    : integration.blocked 
+                      ? "Upgrade para Pro" 
+                      : "Conectar Agora"
+                  }
                 </Button>
+                {integration.blocked && (
+                  <p className="text-xs text-muted-foreground mt-2 text-center">
+                    Você já tem uma integração ativa. Upgrade para Pro para conectar múltiplos marketplaces.
+                  </p>
+                )}
               </CardContent>
             </Card>
           ))}

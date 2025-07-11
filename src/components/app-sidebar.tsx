@@ -89,7 +89,7 @@ export function AppSidebar() {
                 </Badge>
               </div>
               <p className="text-xs text-muted-foreground mb-3">
-                Conecte até 1 conta de marketplace
+                1 conta de 1 marketplace conectada
               </p>
               <button className="w-full bg-primary text-primary-foreground text-xs font-medium py-2 rounded-md hover:bg-primary/90 transition-colors">
                 Upgrade para Pro
