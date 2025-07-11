@@ -9,7 +9,7 @@ const integrations = [
   {
     id: "mercadolivre",
     name: "Mercado Livre",
-    description: "Connect your Mercado Livre store to sync orders and inventory",
+    description: "Conecte sua loja do Mercado Livre para sincronizar pedidos e estoque",
     logo: "ML",
     color: "#FFE600",
     bgColor: "bg-yellow-500/10",
@@ -19,31 +19,31 @@ const integrations = [
         name: "Loja Principal ML",
         id: "123456789",
         status: "active",
-        lastSync: "2 minutes ago"
+        lastSync: "há 2 minutos"
       }
     ]
   },
   {
     id: "shopee",
     name: "Shopee",
-    description: "Integrate with Shopee to manage your Southeast Asian sales",
+    description: "Integre com a Shopee para gerenciar suas vendas no Sudeste Asiático",
     logo: "S",
     color: "#EE4D2D",
     bgColor: "bg-orange-500/10",
     connected: true,
     accounts: [
       {
-        name: "My Shopee Store",
+        name: "Minha Loja Shopee",
         id: "shop_987654321",
         status: "active",
-        lastSync: "5 minutes ago"
+        lastSync: "há 5 minutos"
       }
     ]
   },
   {
     id: "magalu",
     name: "Magalu Marketplace",
-    description: "Connect to Magazine Luiza's marketplace platform",
+    description: "Conecte à plataforma de marketplace do Magazine Luiza",
     logo: "MG",
     color: "#0066CC",
     bgColor: "bg-blue-500/10",
@@ -54,7 +54,7 @@ const integrations = [
   {
     id: "amazon",
     name: "Amazon",
-    description: "Integrate with Amazon Brazil for expanded reach",
+    description: "Integre com a Amazon Brasil para expandir seu alcance",
     logo: "A",
     color: "#FF9900",
     bgColor: "bg-amber-500/10",
@@ -69,18 +69,18 @@ export default function Integrations() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-foreground">Integrations</h1>
+          <h1 className="text-3xl font-bold text-foreground">Integrações</h1>
           <p className="text-muted-foreground mt-1">
-            Connect and manage your marketplace integrations.
+            Conecte e gerencie suas integrações de marketplace.
           </p>
         </div>
         <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
           <Plus className="h-4 w-4 mr-2" />
-          Add Integration
+          Adicionar Integração
         </Button>
       </div>
 
-      {/* Plan limitation notice */}
+      {/* Aviso de limitação do plano */}
       <Card className="bg-card border-border border-dashed">
         <CardContent className="pt-6">
           <div className="flex items-center justify-between">
@@ -89,22 +89,22 @@ export default function Integrations() {
                 <AlertCircle className="h-5 w-5 text-primary" />
               </div>
               <div>
-                <h3 className="font-semibold text-foreground">Basic Plan Limitations</h3>
+                <h3 className="font-semibold text-foreground">Limitações do Plano Básico</h3>
                 <p className="text-sm text-muted-foreground">
-                  You can connect up to 1 account per marketplace. Upgrade to Pro for unlimited connections.
+                  Você pode conectar até 1 conta por marketplace. Faça upgrade para Pro para conexões ilimitadas.
                 </p>
               </div>
             </div>
             <Button variant="outline" className="border-primary text-primary hover:bg-primary/10">
-              Upgrade to Pro
+              Upgrade para Pro
             </Button>
           </div>
         </CardContent>
       </Card>
 
-      {/* Active Integrations */}
+      {/* Integrações Ativas */}
       <div className="space-y-4">
-        <h2 className="text-xl font-semibold text-foreground">Active Integrations</h2>
+        <h2 className="text-xl font-semibold text-foreground">Integrações Ativas</h2>
         
         {integrations.filter(integration => integration.connected).map((integration) => (
           <Card key={integration.id} className="bg-card border-border">
@@ -124,7 +124,7 @@ export default function Integrations() {
                       {integration.name}
                       <Badge className="bg-green-500/10 text-green-500 border-green-500/20">
                         <CheckCircle className="h-3 w-3 mr-1" />
-                        Connected
+                        Conectado
                       </Badge>
                     </CardTitle>
                     <CardDescription>{integration.description}</CardDescription>
@@ -148,16 +148,16 @@ export default function Integrations() {
                     <div>
                       <p className="font-medium text-foreground">{account.name}</p>
                       <p className="text-xs text-muted-foreground">
-                        ID: {account.id} • Last sync: {account.lastSync}
+                        ID: {account.id} • Última sincronização: {account.lastSync}
                       </p>
                     </div>
                     <div className="flex items-center gap-2">
                       <Badge className="bg-green-500/10 text-green-500 border-green-500/20 text-xs">
-                        Active
+                        Ativo
                       </Badge>
                       <Button variant="ghost" size="sm" className="text-primary">
                         <ExternalLink className="h-3 w-3 mr-1" />
-                        Manage
+                        Gerenciar
                       </Button>
                     </div>
                   </div>
@@ -168,9 +168,9 @@ export default function Integrations() {
         ))}
       </div>
 
-      {/* Available Integrations */}
+      {/* Integrações Disponíveis */}
       <div className="space-y-4">
-        <h2 className="text-xl font-semibold text-foreground">Available Integrations</h2>
+        <h2 className="text-xl font-semibold text-foreground">Integrações Disponíveis</h2>
         
         <div className="grid gap-4 md:grid-cols-2">
           {integrations.filter(integration => !integration.connected).map((integration) => (
@@ -191,7 +191,7 @@ export default function Integrations() {
                         {integration.name}
                         {integration.comingSoon && (
                           <Badge variant="secondary" className="text-xs">
-                            Coming Soon
+                            Em Breve
                           </Badge>
                         )}
                       </CardTitle>
@@ -206,7 +206,7 @@ export default function Integrations() {
                   className="w-full border-border"
                   disabled={integration.comingSoon}
                 >
-                  {integration.comingSoon ? "Coming Soon" : "Connect Now"}
+                  {integration.comingSoon ? "Em Breve" : "Conectar Agora"}
                 </Button>
               </CardContent>
             </Card>

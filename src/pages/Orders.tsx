@@ -6,16 +6,16 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Search, Filter, Package, Truck, CheckCircle, Clock } from "lucide-react";
 
-// Mock orders data
+// Dados simulados de pedidos
 const orders = [
   {
     id: "#ML-2024-001",
     customer: "João Silva",
     product: "Smartphone Samsung Galaxy A54",
     marketplace: "Mercado Livre",
-    status: "pending",
+    status: "pendente",
     value: "R$ 1.299,00",
-    date: "2024-01-15",
+    date: "15/01/2024",
     color: "#FFE600"
   },
   {
@@ -23,9 +23,9 @@ const orders = [
     customer: "Maria Santos",
     product: "Tênis Nike Air Max",
     marketplace: "Shopee",
-    status: "shipped",
+    status: "enviado",
     value: "R$ 459,90",
-    date: "2024-01-14",
+    date: "14/01/2024",
     color: "#EE4D2D"
   },
   {
@@ -33,9 +33,9 @@ const orders = [
     customer: "Pedro Costa",
     product: "Notebook Dell Inspiron",
     marketplace: "Mercado Livre",
-    status: "delivered",
+    status: "entregue",
     value: "R$ 2.899,00",
-    date: "2024-01-13",
+    date: "13/01/2024",
     color: "#FFE600"
   },
   {
@@ -43,22 +43,22 @@ const orders = [
     customer: "Ana Oliveira",
     product: "Fone de Ouvido JBL",
     marketplace: "Shopee",
-    status: "processing",
+    status: "processando",
     value: "R$ 199,99",
-    date: "2024-01-12",
+    date: "12/01/2024",
     color: "#EE4D2D"
   },
 ];
 
 const getStatusIcon = (status: string) => {
   switch (status) {
-    case 'pending':
+    case 'pendente':
       return <Clock className="h-4 w-4" />;
-    case 'processing':
+    case 'processando':
       return <Package className="h-4 w-4" />;
-    case 'shipped':
+    case 'enviado':
       return <Truck className="h-4 w-4" />;
-    case 'delivered':
+    case 'entregue':
       return <CheckCircle className="h-4 w-4" />;
     default:
       return <Clock className="h-4 w-4" />;
@@ -67,16 +67,31 @@ const getStatusIcon = (status: string) => {
 
 const getStatusColor = (status: string) => {
   switch (status) {
-    case 'pending':
+    case 'pendente':
       return 'bg-yellow-500/10 text-yellow-500 border-yellow-500/20';
-    case 'processing':
+    case 'processando':
       return 'bg-blue-500/10 text-blue-500 border-blue-500/20';
-    case 'shipped':
+    case 'enviado':
       return 'bg-purple-500/10 text-purple-500 border-purple-500/20';
-    case 'delivered':
+    case 'entregue':
       return 'bg-green-500/10 text-green-500 border-green-500/20';
     default:
       return 'bg-gray-500/10 text-gray-500 border-gray-500/20';
+  }
+};
+
+const getStatusLabel = (status: string) => {
+  switch (status) {
+    case 'pendente':
+      return 'Pendente';
+    case 'processando':
+      return 'Processando';
+    case 'enviado':
+      return 'Enviado';
+    case 'entregue':
+      return 'Entregue';
+    default:
+      return 'Pendente';
   }
 };
 
@@ -85,44 +100,44 @@ export default function Orders() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-foreground">Orders</h1>
+          <h1 className="text-3xl font-bold text-foreground">Pedidos</h1>
           <p className="text-muted-foreground mt-1">
-            Manage and track orders from all your connected stores.
+            Gerencie e acompanhe pedidos de todas as suas lojas conectadas.
           </p>
         </div>
       </div>
 
-      {/* Filters */}
+      {/* Filtros */}
       <Card className="bg-card border-border">
         <CardContent className="pt-6">
           <div className="flex flex-col sm:flex-row gap-4">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
               <Input
-                placeholder="Search orders, customers, or products..."
+                placeholder="Buscar pedidos, clientes ou produtos..."
                 className="pl-10 bg-background border-border"
               />
             </div>
             <Select>
               <SelectTrigger className="w-[180px] bg-background border-border">
-                <SelectValue placeholder="All Marketplaces" />
+                <SelectValue placeholder="Todos os Marketplaces" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">All Marketplaces</SelectItem>
+                <SelectItem value="all">Todos os Marketplaces</SelectItem>
                 <SelectItem value="mercadolivre">Mercado Livre</SelectItem>
                 <SelectItem value="shopee">Shopee</SelectItem>
               </SelectContent>
             </Select>
             <Select>
               <SelectTrigger className="w-[140px] bg-background border-border">
-                <SelectValue placeholder="All Status" />
+                <SelectValue placeholder="Todos os Status" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">All Status</SelectItem>
-                <SelectItem value="pending">Pending</SelectItem>
-                <SelectItem value="processing">Processing</SelectItem>
-                <SelectItem value="shipped">Shipped</SelectItem>
-                <SelectItem value="delivered">Delivered</SelectItem>
+                <SelectItem value="all">Todos os Status</SelectItem>
+                <SelectItem value="pendente">Pendente</SelectItem>
+                <SelectItem value="processando">Processando</SelectItem>
+                <SelectItem value="enviado">Enviado</SelectItem>
+                <SelectItem value="entregue">Entregue</SelectItem>
               </SelectContent>
             </Select>
             <Button variant="outline" size="icon" className="border-border">
@@ -132,12 +147,12 @@ export default function Orders() {
         </CardContent>
       </Card>
 
-      {/* Orders Table */}
+      {/* Tabela de Pedidos */}
       <Card className="bg-card border-border">
         <CardHeader>
-          <CardTitle className="text-foreground">Recent Orders</CardTitle>
+          <CardTitle className="text-foreground">Pedidos Recentes</CardTitle>
           <CardDescription>
-            {orders.length} orders found
+            {orders.length} pedidos encontrados
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -165,7 +180,7 @@ export default function Orders() {
                       {order.product}
                     </p>
                     <p className="text-xs text-muted-foreground">
-                      Customer: {order.customer} • {order.date}
+                      Cliente: {order.customer} • {order.date}
                     </p>
                   </div>
                 </div>
@@ -179,14 +194,14 @@ export default function Orders() {
                   
                   <Badge 
                     variant="outline" 
-                    className={`${getStatusColor(order.status)} flex items-center gap-1 capitalize`}
+                    className={`${getStatusColor(order.status)} flex items-center gap-1`}
                   >
                     {getStatusIcon(order.status)}
-                    {order.status}
+                    {getStatusLabel(order.status)}
                   </Badge>
 
                   <Button variant="ghost" size="sm" className="text-primary hover:text-primary/80">
-                    View Details
+                    Ver Detalhes
                   </Button>
                 </div>
               </div>

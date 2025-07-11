@@ -16,24 +16,25 @@ import { Badge } from "@/components/ui/badge";
 
 const items = [
   {
-    title: "Dashboard",
+    title: "Painel",
     url: "/",
     icon: BarChart3,
   },
   {
-    title: "Orders",
+    title: "Pedidos",
     url: "/orders",
     icon: ShoppingCart,
   },
   {
-    title: "Integrations",
+    title: "Integrações",
     url: "/integrations",
     icon: Plug,
   },
 ];
 
 export function AppSidebar() {
-  const { collapsed } = useSidebar();
+  const { state } = useSidebar();
+  const collapsed = state === "collapsed";
   const location = useLocation();
   const currentPath = location.pathname;
 
@@ -54,7 +55,7 @@ export function AppSidebar() {
       <SidebarContent className="pt-4">
         <SidebarGroup>
           <SidebarGroupLabel className="px-4 text-xs font-medium text-muted-foreground uppercase tracking-wider">
-            {!collapsed && "Navigation"}
+            {!collapsed && "Navegação"}
           </SidebarGroupLabel>
           <SidebarGroupContent className="mt-2">
             <SidebarMenu className="space-y-1">
@@ -84,14 +85,14 @@ export function AppSidebar() {
               <div className="flex items-center gap-2 mb-2">
                 <Crown className="h-4 w-4 text-primary" />
                 <Badge variant="secondary" className="text-xs">
-                  Basic Plan
+                  Plano Básico
                 </Badge>
               </div>
               <p className="text-xs text-muted-foreground mb-3">
-                Connect up to 1 marketplace account
+                Conecte até 1 conta de marketplace
               </p>
               <button className="w-full bg-primary text-primary-foreground text-xs font-medium py-2 rounded-md hover:bg-primary/90 transition-colors">
-                Upgrade to Pro
+                Upgrade para Pro
               </button>
             </div>
           </div>
